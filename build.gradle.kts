@@ -2,13 +2,15 @@ plugins {
     kotlin("jvm") version "2.3.0"
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "4.0.3"
+    id("org.springframework.boot") version "4.0.3" apply false
     id("io.spring.dependency-management") version "1.1.7"
 
     // kotlin lint
     id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
     kotlin("plugin.spring") version "2.3.0"
 }
+
+apply(plugin = "io.spring.dependency-management")
 
 ktlint {
     version.set("1.8.0")
@@ -50,6 +52,24 @@ dependencies {
 
 kotlin {
     jvmToolchain(21)
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.jar {
+    enabled = true
+    archiveClassifier.set("")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
 
 tasks.test {
