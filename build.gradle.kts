@@ -23,6 +23,7 @@ repositories {
     mavenCentral()
 }
 
+val springBootVersion by extra("4.0.3")
 val mockkVersion by extra("1.14.9")
 val kotestVersion by extra("6.1.3")
 val exposedVersion by extra("1.0.0")
@@ -30,13 +31,13 @@ val exposedVersion by extra("1.0.0")
 dependencies {
     implementation(kotlin("stdlib"))
 
-    compileOnly("org.springframework.boot:spring-boot-starter-webmvc")
-    compileOnly("org.springframework.boot:spring-boot-starter-data-jdbc")
+    compileOnly("org.springframework.boot:spring-boot-starter-webmvc:$springBootVersion")
+    compileOnly("org.springframework.boot:spring-boot-starter-data-jdbc:$springBootVersion")
     compileOnly("org.jetbrains.exposed:exposed-core:$exposedVersion")
     compileOnly("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-data-jdbc:$springBootVersion")
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("org.jetbrains.exposed:exposed-spring-boot4-starter:$exposedVersion")
     testImplementation("io.kotest:kotest-runner-junit6:$kotestVersion")
